@@ -41,7 +41,7 @@ def setup(hass, config):
         if irhvac['Turbo'] == 'On':
             fanSpeed = 'turbo'
 
-        attributes = hass.states.get('climate.air_conditioner').attributes.copy()
+        attributes = hass.states.get(climate).attributes.copy()
         attributes['temperature'] = temp
         attributes['fan_mode'] = fanSpeed
 
