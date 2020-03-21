@@ -1,0 +1,8 @@
+{
+  "domain": "mqtt_climate_sync",
+  "name": "MQTT Climate Sync",
+  "documentation": "https://github.com/joogps/MQTT_Climate_Sync",
+  "dependencies": [],
+  "codeowners": ["@joogps"],
+  "requirements": []
+}
