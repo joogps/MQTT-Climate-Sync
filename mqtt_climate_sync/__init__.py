@@ -1,10 +1,9 @@
 import logging
 import json
 
-DOMAIN = "mqtt_climate_sync"
-DEPENDENCIES = ["mqtt"]
-
 _LOGGER = logging.getLogger(__name__)
+
+DOMAIN = "mqtt_climate_sync"
 
 CONF_TOPIC = "topic"
 CONF_CLIMATE = "climate"
@@ -23,6 +22,10 @@ def setup(hass, config):
             if 'IRHVAC' in data['IrReceived']:
                 if data['IrReceived']['IRHVAC']['Vendor'].casefold() == climateState.attributes['manufacturer'].casefold():
                     sync_climate(data['IrReceived']['IRHVAC'])
+                else:
+                    _LOGGER.warning('IRHVAC vendor doesn\'t match climate entity\'s manufacturer.')
+            else:
+                _LOGGER.warning('IR data received has no IRHVAC attribute.')
 
     def sync_climate(irhvac):
         mode = irhvac['Mode'].casefold()
