@@ -16,16 +16,23 @@ def setup(hass, config):
 
     def message_received(msg):
         data = json.loads(msg.payload)
-        climateState = hass.states.get('climate.air_conditioner')
+        climateState = hass.states.get(climate)
+
+        if climateState is None:
+            _LOGGER.warning('Entity doesn\'t exist')
+            return True
 
         if 'IrReceived' in data:
             if 'IRHVAC' in data['IrReceived']:
-                if data['IrReceived']['IRHVAC']['Vendor'].casefold() == climateState.attributes['manufacturer'].casefold():
-                    sync_climate(data['IrReceived']['IRHVAC'])
+                if 'manufacturer' in climateState.attributes:
+                    if data['IrReceived']['IRHVAC']['Vendor'].casefold() == climateState.attributes['manufacturer'].casefold():
+                        sync_climate(data['IrReceived']['IRHVAC'])
+                    else:
+                        _LOGGER.warning('IRHVAC vendor doesn\'t match climate entity\'s manufacturer')
                 else:
-                    _LOGGER.warning('IRHVAC vendor doesn\'t match climate entity\'s manufacturer.')
+                    _LOGGER.warning('Entity has no manufacturer data (maybe not of climate domain)')
             else:
-                _LOGGER.warning('IR data received has no IRHVAC attribute.')
+                _LOGGER.warning('IR data received has no IRHVAC attribute')
 
     def sync_climate(irhvac):
         mode = irhvac['Mode'].casefold()
@@ -47,6 +54,12 @@ def setup(hass, config):
         attributes = hass.states.get(climate).attributes.copy()
         attributes['temperature'] = temp
         attributes['fan_mode'] = fanSpeed
+
+        turned = 'off'
+        if hass.states.get(climate).state == 'off' and mode != 'off':
+            turned = 'on'
+
+        hass.bus.fire("mqtt_climate_sync_changed_state", {"turned": turned, "state": mode, "temperature": temp, "fan_mode": fanSpeed})
 
         hass.states.set(climate, mode, attributes)
 
