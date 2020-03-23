@@ -14,18 +14,18 @@ A Home Assistant component for syncing IR (HVAC) messages received by Tasmota ([
 Every time the component syncs IR data, it fires an event called `mqtt_climate_sync_changed_state`. This events contains a `turned` property, which returns `on` or `off`, `state` which is equal to the climate entity's state, `temperature`, which is equal to the temperature and `fan_mode`, which is equal to the fan mode. With this event, you can set up automations like this one, which sends a notification to your mobile phone whenever your air conditioner is turned on.
   ```yaml
     automation:
-      - alias: Air Conditioner turned on
-        initial_state: true
-        trigger:
-          platform: event
-          event_type: mqtt_climate_sync_changed_state
-          event_data:
-            turned: 'on'
-        action:
-          service: notify.mobile_app
-          data:
-            title: Air Conditioner turned on
-            message: Your Air Conditioner was turned on using a remote
+      alias: Air Conditioner turned on
+      initial_state: true
+      trigger:
+        platform: event
+        event_type: mqtt_climate_sync_changed_state
+        event_data:
+          turned: 'on'
+      action:
+        service: notify.mobile_app
+        data:
+          title: Air Conditioner turned on
+          message: Your Air Conditioner was turned on using a remote
   ```
 
 ## Notes
