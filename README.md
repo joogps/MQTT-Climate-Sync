@@ -1,5 +1,5 @@
 # MQTT-Climate-Sync
-A Home Assistant component for syncing IR (HVAC) messages received by Tasmota ([tasmota-ir](https://github.com/arendst/Tasmota/wiki/Tasmota-IR)) MQTT transmitters/receivers with climate entities. Works great with the [SmartIr](https://github.com/smartHomeHub/SmartIR) component.
+A Home Assistant component for syncing IR (HVAC) messages received by Tasmota ([tasmota-ir](https://github.com/arendst/Tasmota/wiki/Tasmota-IR)) MQTT transmitters/receivers with climate entities. It works great with the [SmartIr](https://github.com/smartHomeHub/SmartIR) component.
 
 ## Installation and configuration
   1. Add the `mqtt_climate_sync` folder to your `custom_components` folder (if it doesn't exist you can create it).
