@@ -1,0 +1,6 @@
+{
+  "name": "MQTT_Climate_Sync",
+  "render_readme": true,
+  "domains": ["climate"],
+  "iot_class": "Local Push"
+}
