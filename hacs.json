@@ -1,6 +1,6 @@
 {
-  "name": "MQTT_Climate_Sync",
+  "name": "MQTT Climate Sync",
   "render_readme": true,
   "domains": ["climate"],
-  "iot_class": "Local Push"
+  "iot_class": "Assumed State"
 }
