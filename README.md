@@ -8,26 +8,26 @@ A Home Assistant integration for syncing IR (HVAC) messages received by Tasmota 
   2. Add the following code to `config.yaml`, where `YOUR_MQTT_TOPIC` is the MQTT topic where your IR receiver sends the received signals (for example, `ir-receiver/tele/RESULT`), and `YOUR_CLIMATE_ENTITY` is the entity you want to sync (for example, `climate.air_conditioner`) 
   ```yaml
     mqtt_climate_sync:
+      entity_id: YOUR_CLIMATE_ENTITY
       topic: YOUR_MQTT_TOPIC
-      climate: YOUR_CLIMATE_ENTITY
   ```
 
 ## Events
-Every time the component syncs IR data, it fires an event called `mqtt_climate_sync_changed_state`. This events contains a `turned` property, which returns `on` or `off`, `state` which is equal to the climate entity's state, `temperature`, which is equal to the temperature and `fan_mode`, which is equal to the fan mode. With this event, you can set up automations like this one, which sends a notification to your mobile phone whenever your air conditioner is turned on.
+Every time the component syncs IR data, it fires an event called `mqtt_climate_sync_state_changed`. This events contains a `turned` attribute, which returns `on` or `off`, `state` which is equal to the climate entity's state, `temperature`, which is equal to the temperature and `fan_mode`, which is equal to the fan mode. With this event, you can set up automations like this one, which sends a notification to your mobile phone when your air conditioner is turned on with a remote control.
   ```yaml
     automation:
       alias: Air Conditioner turned on
       initial_state: true
       trigger:
         platform: event
-        event_type: mqtt_climate_sync_changed_state
+        event_type: mqtt_climate_sync_state_changed
         event_data:
           turned: 'on'
       action:
         service: notify.mobile_app
         data:
           title: Air Conditioner turned on
-          message: Your Air Conditioner was turned on using a remote
+          message: Your Air Conditioner was turned on with a remote control
   ```
 
 ## Notes
