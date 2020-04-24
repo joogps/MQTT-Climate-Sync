@@ -4,5 +4,5 @@
     "documentation": "https://github.com/joogps/MQTT-Climate-Sync",
     "dependencies": ["mqtt"],
     "codeowners": ["@joogps"],
-    "requirements": [],
+    "requirements": []
 }
