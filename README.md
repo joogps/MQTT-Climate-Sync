@@ -5,7 +5,7 @@ A Home Assistant integration for syncing IR (HVAC) messages received by Tasmota 
 
 ## Installation and configuration
   1. You can install the integration either by searching for it in [HACS](https://hacs.xyz) or by adding the `custom_components/mqtt_climate_sync` folder to your local `custom_components` folder (if it doesn't exist you can create it).
-  2. Add the following code to `config.yaml`, where `YOUR_MQTT_TOPIC` is the MQTT topic where your IR receiver sends the received signals (for example, `ir-receiver/tele/RESULT`), and `YOUR_CLIMATE_ENTITY` is the entity you want to sync (for example, `climate.air_conditioner`) 
+  2. Add the following code to `configuration.yaml`, where `YOUR_MQTT_TOPIC` is the MQTT topic where your IR receiver sends the received signals (for example, `ir-receiver/tele/RESULT`), and `YOUR_CLIMATE_ENTITY` is the entity you want to sync (for example, `climate.air_conditioner`) 
   ```yaml
     mqtt_climate_sync:
       entity_id: YOUR_CLIMATE_ENTITY
