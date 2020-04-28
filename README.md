@@ -38,5 +38,5 @@ Every time the component syncs IR data, it fires an event called `mqtt_climate_s
   ```
 
 ## Notes
-  * This component syncs only the hvac mode (off, cool, heat, fan only, etc.), temperature and fan mode (low, medium, high, auto, etc.) attributes.
+  * This component syncs only the HVAC mode (off, cool, heat, fan only, etc.), temperature and fan mode (low, medium, high, auto, etc.) attributes.
   * The MQTT data the component receives needs to be in HVAC (the Tasmota JSON structure looks like this: `{"IrReceived":{"Protocol":"GREE","Bits":64,"Data":"0x0x0904405002200090","Repeat":0,"IRHVAC":{"Vendor":"GREE","Model":1,"Power":"On","Mode":"Cool","Celsius":"On","Temp":20, ...`)
