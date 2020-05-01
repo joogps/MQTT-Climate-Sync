@@ -1,7 +1,9 @@
 # MQTT Climate Sync
-A Home Assistant integration for syncing IR (HVAC) messages received by Tasmota ([tasmota-ir](https://github.com/arendst/Tasmota/wiki/Tasmota-IR)) MQTT transmitters/receivers with climate entities. It works great with the [SmartIr](https://github.com/smartHomeHub/SmartIR) component.
-
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+
+A Home Assistant component for syncing IRHVAC messages received by [Tasmota](https://tasmota.github.io/docs/Tasmota-IR/#sending-irhvac-commands) IR transmitters/receivers with climate entities. 
+
+For an all-in-one solution, I highly suggest you to use the [Tasmota-IRHVAC component](https://github.com/hristo-atanasov/Tasmota-IRHVAC).
 
 ## Installation and configuration
   1. You can install the integration either by searching for it in [HACS](https://hacs.xyz) or by adding the `custom_components/mqtt_climate_sync` folder to your local `custom_components` folder (if it doesn't exist you can create it).
